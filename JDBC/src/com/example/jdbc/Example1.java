@@ -13,21 +13,29 @@ public class Example1 {
       String jdbc_driver = "com.mysql.cj.jdbc.Driver";
       String jdbc_url = "jdbc:mysql://localhost:3306/board?serverTimezone=UTC";
       try {
+    	  
          Class.forName(jdbc_driver).newInstance();
          Connection con = DriverManager.getConnection(jdbc_url, "root", "root");
          Statement st = con.createStatement();
+         
          String sql = "SELECT * FROM member";
          ResultSet rs = st.executeQuery(sql);
 
-         rs.next();
+         while(rs.next()){       
+             String name = rs.getString(1);
+             String owner = rs.getString(2);
+             String date = rs.getString(3);
 
-         @SuppressWarnings("unused")
+             System.out.println(name + " " + owner + " " + date);
+         }
+
          String name = rs.getString("name");
          System.out.printf("name: %s\n", name);
 
          rs.close();
          st.close();
-         con.close();         
+         con.close();    
+         
       } catch (Exception e) {
          e.printStackTrace();
       } 
