@@ -2,7 +2,6 @@ package com.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -15,10 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/first2")
 public class ServletTest extends HttpServlet {
 	
-	/*@Override
+	@Override
 	public void init(ServletConfig config) throws ServletException {
 		System.out.println("init called");
-	}*/
+	}
 	
 	// 
 	@Override
