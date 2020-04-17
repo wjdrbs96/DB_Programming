@@ -33,7 +33,7 @@ public class HomeWork1 {
 			List<AddressBook> list1 = listAll(st);
 			
 			for (int i = 0; i < list1.size(); ++i) {
-				update(con, list1.get(i));                  // 모든 데이터 다 지우기
+				update(con, list1.get(i));                  // 모든 데이터 다 update 
 			}
 			
 			List<AddressBook> list2 = listAll(st);     // delete 한 이후에 데이터 log 찍기 
