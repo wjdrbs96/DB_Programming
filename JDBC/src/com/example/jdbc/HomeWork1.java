@@ -84,6 +84,7 @@ public class HomeWork1 {
 		
 		}
 		
+		rs.close();
 		return list;
 		
 	}
@@ -112,6 +113,7 @@ public class HomeWork1 {
 			System.out.println("데이터 update 실패");
 		}
 	
+		pstmt.close();
 		
 	}
 	
@@ -132,6 +134,8 @@ public class HomeWork1 {
 		else {
 			System.out.println("데이터 delete 실패");
 		}
+		
+		pstmt.close();
 	}
 	
 	// 데이터를 insert 하기 
@@ -165,9 +169,9 @@ public class HomeWork1 {
 		
 		List<AddressBook> list = new ArrayList<>();
 		System.out.println("insert할 데이터를 입력하세요");
+		Scanner input = new Scanner(System.in);
 		
 		for (int i = 0; i < 5; ++i) {                    // 5개 데이터 입력받기 
-			Scanner input = new Scanner(System.in);
 			String name = input.next();
 			String tel = input.next();
 			String email = input.next();
@@ -175,6 +179,8 @@ public class HomeWork1 {
 			AddressBook addressbook = new AddressBook(name, tel, email, address);
 			list.add(addressbook);
 		}
+		
+		input.close();
 		
 		return list;
 	}
