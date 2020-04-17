@@ -5,11 +5,6 @@
 
 * addressbook 이라는 table 만들기
 
-|id|name|tellemailladdressl
-|---|---|---|---l---l
-lINT|VARCHAR(45)|VARCHAR(60)lVARCHAR(60)l
-
-
 * 위에서 생성한 addressbook table에 PreparedStatement를 이용하여 5개의 열을 채우기 (본인 임의로 데이터 생성)
 
 
