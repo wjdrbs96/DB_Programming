@@ -1,6 +1,6 @@
 <%@ tag import="java.util.Calendar"%>
 <%@ tag language="java" pageEncoding="UTF-8"%>
-<%@ tag body-content="empty" %>
+<%@ tag body-content="empty"%>
 
 <%
 	Calendar date = Calendar.getInstance();
