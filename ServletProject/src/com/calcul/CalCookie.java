@@ -50,6 +50,8 @@ public class CalCookie extends HttpServlet{
 			Cookie valueCookie = new Cookie("value", String.valueOf(v));
 			Cookie operatorCookie = new Cookie("operator", op);
 			valueCookie.setMaxAge(60 * 60 * 2);
+			valueCookie.setPath("/cal2");
+			
 			
 			resp.addCookie(valueCookie);
 			resp.addCookie(operatorCookie);
