@@ -22,34 +22,33 @@ public class HomeWork1 {
 			Class.forName(jdbc_driver).newInstance();
 			con = DriverManager.getConnection(jdbc_url, "root", "root");
 			Statement st = con.createStatement();
-			List<AddressBook> listDate = inputDate();   // insertÇÒ µ¥ÀÌÅÍ ÀÔ·Â¹Ş±â 
+			List<AddressBook> listDate = inputDate();   
 			
 
-			// 5°³ insert ÇÏ±â 
 			for (int i = 0; i < 5; ++i) {
 				insert(con, listDate.get(i));
 			}
 			
-			List<AddressBook> list1 = listAll(st);           // insert ÇÑ ÀÌÈÄ¿¡ log Âï±â 
+			List<AddressBook> list1 = listAll(st);          
 			
 			for (int i = 0; i < list1.size(); ++i) {
-				update(con, list1.get(i));                  // ¸ğµç µ¥ÀÌÅÍ ´Ù update 
+				update(con, list1.get(i));                 
 			}
 			
-			List<AddressBook> list2 = listAll(st);     // update ÇÑ ÀÌÈÄ¿¡ µ¥ÀÌÅÍ log Âï±â 
+			List<AddressBook> list2 = listAll(st);    
 			
 			
-			delete(con, list2.size() - 1);                    // ÇÏÀ§ 2°³ Áö¿ì±â 
+			delete(con, list2.size() - 1);                    
 			delete(con, list2.size() - 2);
-			List<AddressBook> list3 = listAll(st);         // delete ÇÑ ÀÌÈÄ¿¡ µ¥ÀÌÅÍ log Âï±â
+			List<AddressBook> list3 = listAll(st);         
 
 		}
 		
 		catch (SQLException e) {
-			System.out.println("Äõ¸® ¿¡·¯ÀÔ´Ï´Ù");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½");
 		}
 		catch (Exception e) {
-			System.out.println("¿¡·¯ÀÔ´Ï´Ù");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½");
 		}
 		
 		finally {
@@ -65,7 +64,6 @@ public class HomeWork1 {
 		}
 	}
 	
-	// ÀüÃ¼ µ¥ÀÌÅÍ¸¦ Á¶È¸
 	public static List<AddressBook> listAll(Statement st) throws SQLException {
 		String sql = "select * from addressbook";
 		ResultSet rs = st.executeQuery(sql);
@@ -79,7 +77,7 @@ public class HomeWork1 {
 			String email = rs.getString(4);
 			String address = rs.getString(5);
 			AddressBook addressbook = new AddressBook(id, name, tel, email, address);
-			System.out.println(name + " " + tel + " " + email + " " + address);          // µ¥ÀÌÅÍ log Âï±â 
+			System.out.println(name + " " + tel + " " + email + " " + address);         
 			list.add(addressbook);
 		
 		}
@@ -89,7 +87,6 @@ public class HomeWork1 {
 		
 	}
 	
-	// µ¥ÀÌÅÍ ¾÷µ¥ÀÌÆ®
 	public static void update(Connection con, AddressBook addressbook) throws SQLException {
 		String sql = "update addressbook " +
 					 "set email = ? " +
@@ -97,20 +94,20 @@ public class HomeWork1 {
 		
 	
 		String email = addressbook.getEmail();
-		String[] emailId = email.split("@");              // @¸¦ ±âÁØÀ¸·Î ¾Õ¿¡ Id °ª¸¸ ¾ò±â 
+		String[] emailId = email.split("@");        
 		
 		PreparedStatement pstmt = con.prepareStatement(sql);
-		pstmt.setString(1, emailId[0] + "@naver.com");           // ¸ğµç email ÁÖ¼Ò¸¦ @naver.com À¸·Î º¯°æ 
+		pstmt.setString(1, emailId[0] + "@naver.com");           
 		pstmt.setLong(2, addressbook.getId());
 		
-		int count = pstmt.executeUpdate();                       // ¹Ù²ï row ¼ö int ÇüÀ¸·Î ¹İÈ¯ 
+		int count = pstmt.executeUpdate();                       
 
 		if (count == 1) {
-			System.out.println("µ¥ÀÌÅÍ update ¼º°ø");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ update ï¿½ï¿½ï¿½ï¿½");
 		}
 
 		else {
-			System.out.println("µ¥ÀÌÅÍ update ½ÇÆĞ");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ update ï¿½ï¿½ï¿½ï¿½");
 		}
 	
 		pstmt.close();
@@ -125,20 +122,19 @@ public class HomeWork1 {
 		PreparedStatement pstmt = con.prepareStatement(sql);
 		pstmt.setInt(1, id);
 		
-		int count = pstmt.executeUpdate();              // ¹Ù²ï row ¼ö int ÇüÀ¸·Î ¹İÈ¯ 
+		int count = pstmt.executeUpdate();             
 
 		if (count == 1) {
-			System.out.println("µ¥ÀÌÅÍ delete ¼º°ø");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ delete ï¿½ï¿½ï¿½ï¿½");
 		}
 
 		else {
-			System.out.println("µ¥ÀÌÅÍ delete ½ÇÆĞ");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ delete ï¿½ï¿½ï¿½ï¿½");
 		}
 		
 		pstmt.close();
 	}
 	
-	// µ¥ÀÌÅÍ¸¦ insert ÇÏ±â 
 	public static void insert(Connection con, AddressBook addressbook) throws SQLException {
 	
 		String sql = "insert into addressbook(name, tel, email, address) " +
@@ -151,27 +147,26 @@ public class HomeWork1 {
 		pstmt.setString(3, addressbook.getEmail());
 		pstmt.setString(4, addressbook.getAddress());
 		
-		int count = pstmt.executeUpdate();                   // ¹Ù²ï row ¼ö int ÇüÀ¸·Î ¹İÈ¯ 
+		int count = pstmt.executeUpdate();                 
 		
 		if (count == 1) {
-			System.out.println("µ¥ÀÌÅÍ insert ¼º°ø");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ insert ï¿½ï¿½ï¿½ï¿½");
 		}
 		
 		else {
-			System.out.println("µ¥ÀÌÅÍ insert ½ÇÆĞ");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ insert ï¿½ï¿½ï¿½ï¿½");
 		}
 		
 		pstmt.close();
 	}
 	
-	// µ¥ÀÌÅÍ¸¦ ÀÔ·Â¹Ş±â
 	public static List<AddressBook> inputDate() {
 		
 		List<AddressBook> list = new ArrayList<>();
-		System.out.println("insertÇÒ µ¥ÀÌÅÍ¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+		System.out.println("insertï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½");
 		Scanner input = new Scanner(System.in);
 		
-		for (int i = 0; i < 5; ++i) {                    // 5°³ µ¥ÀÌÅÍ ÀÔ·Â¹Ş±â 
+		for (int i = 0; i < 5; ++i) {                   
 			String name = input.next();
 			String tel = input.next();
 			String email = input.next();
