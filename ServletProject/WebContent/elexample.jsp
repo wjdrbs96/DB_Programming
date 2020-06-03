@@ -8,13 +8,10 @@
 </head>
 <body>
 
-	${param.id } / ${param.pw }
-	<br> ${param["id"] } / ${param["pw"] }
-	<br> ${param } ${param["-d"] } / ${param["new"] }
-	<br> ${header }
-	<br>
-
-
+	${param.id } / ${param.pw } <br>	
+	${param["id"] } / ${param["pw"] } <br>
+	${param } <br>
+	${param["id"] } / ${param["pw"] } <br>
 
 </body>
 </html>

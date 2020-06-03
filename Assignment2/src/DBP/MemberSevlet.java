@@ -4,14 +4,17 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import DTO.Member;
 
 @WebServlet("/member")
@@ -26,11 +29,6 @@ public class MemberSevlet extends HttpServlet {
 		String password = req.getParameter("password");
 		String name = req.getParameter("name");
 		String email = req.getParameter("email");
-		System.out.println(loginId);
-		System.out.println(password);
-		System.out.println(name);
-		System.out.println(email);
-		
 		
 		Member member = new Member(loginId, password, name, email);
 		
@@ -43,7 +41,8 @@ public class MemberSevlet extends HttpServlet {
 			Class.forName(jdbc_driver).newInstance();
 			con = DriverManager.getConnection(jdbc_url, "root", "root");
 			Statement st = con.createStatement();
-			//insert(con, member);
+			insert(con, member);
+			
 
 		}
 		
@@ -82,7 +81,14 @@ public class MemberSevlet extends HttpServlet {
 		int count = pstmt.executeUpdate();
 		
 		if (count == 1) {
-			System.out.println("insert 성공입니다");
+			System.out.println("==========insert 성공입니다==========");
+			
+			for (int i = 0; i < 1; ++i) {
+				System.out.println("로그인 아이디 : " + member.getLoginId());
+				System.out.println("이름 : " + member.getName());
+				System.out.println("이메일 : " + member.getEmail());
+			}
+			
 		}
 		
 		else {
@@ -90,5 +96,27 @@ public class MemberSevlet extends HttpServlet {
 		}
 		
 		pstmt.close();
+	}
+	
+	public static List<Member> isCheck(Statement st) throws SQLException {
+		String sql = "select * from member " +
+					 "where loginId = ? and name = ?";
+		
+		ResultSet rs = st.executeQuery(sql);
+		
+		List<Member> list = new ArrayList<>();
+		
+		while (rs.next()) {
+			String loginId = rs.getString(2);
+			String name = rs.getString(3);
+			String email = rs.getString(4);
+			Member member = new Member(loginId, name, email);         
+			list.add(member);
+		
+		}
+		
+		rs.close();
+		return list;
+		
 	}
 }

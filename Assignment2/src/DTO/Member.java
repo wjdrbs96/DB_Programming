@@ -1,6 +1,7 @@
 package DTO;
 
 public class Member {
+	int memberId;
 	String loginId;
 	String password;
 	String name;
@@ -11,6 +12,20 @@ public class Member {
 		this.password = password;
 		this.name = name;
 		this.email = email;
+	}
+	
+	public Member(String loginId, String name, String email) {
+		this.loginId = loginId;
+		this.name = name;
+		this.email = email;
+	}
+	
+	public int getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(int memberId) {
+		this.memberId = memberId;
 	}
 
 	public String getLoginId() {

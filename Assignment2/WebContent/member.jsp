@@ -21,6 +21,10 @@
     <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/res/css/application.css" rel="stylesheet">
 </head>
+<%
+	
+%>
+
 <body>
 <div class="container text-center" style="margin-top: 3%;">
     <h1 class="ssafy">회원가입</h1>
