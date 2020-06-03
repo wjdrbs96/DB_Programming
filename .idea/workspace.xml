@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2bc8a2b8-b93c-4d50-99ea-1d1defc02504" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Assignment2/WebContent/member.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment2/WebContent/member.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment2/src/DBP/MemberSevlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment2/src/DBP/MemberSevlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment2/src/DTO/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment2/src/DTO/Member.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServletProject/WebContent/elexample.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/ServletProject/WebContent/elexample.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,7 +18,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="C:/Java" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Java" />
     <property name="settings.editor.selected.configurable" value="preferences.applicationServers" />
   </component>
   <component name="RunDashboard">
@@ -48,7 +46,22 @@
       <workItem from="1590424554247" duration="7000" />
       <workItem from="1590508345986" duration="24000" />
       <workItem from="1590577634264" duration="37000" />
+      <workItem from="1591200506584" duration="632000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
