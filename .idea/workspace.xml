@@ -21,6 +21,12 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Java" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="preferences.applicationServers" />
   </component>
   <component name="RunDashboard">
@@ -49,7 +55,7 @@
       <workItem from="1590508345986" duration="24000" />
       <workItem from="1590577634264" duration="37000" />
       <workItem from="1591200506584" duration="873000" />
-      <workItem from="1591230298047" duration="1755000" />
+      <workItem from="1591230298047" duration="2019000" />
     </task>
     <servers />
   </component>

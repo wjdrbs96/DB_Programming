@@ -3,10 +3,14 @@
 ### 1) ServletContext, HttpSession, HttpServletRequest, Cookie 중에서 다음 질문에 답해주세요.
 
 * 서버 사이드 저장 기술은 어느것들인가? <br>
-```ServletContext, HttpSession, HttpServletRequest```
+```
+ServletContext, HttpSession, HttpServletRequest
+```
 
 * HttpSession 키는 어디에 저장되어 있는지? <br>
-```서버 메모리에 저장```
+```
+서버 메모리에 저장
+```
 
 * Cookie의 옵션 중 Path와 MaxAge 기능 설명 <br>
 ```
