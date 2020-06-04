@@ -10,14 +10,12 @@
 <body>
 	<%
 	request.setAttribute("name", "wjdrbs");
-%>
+	%>
 	<mytag:line />
-	오늘날짜는 :
-	<mytag:time />
+	오늘날짜는 : <mytag:time />
 	<mytag:line />
 
-	<mytag:sum num2="2" num1="5" />
-	<br>
+	<mytag:sum num2="2" num1="5" /> <br>
 	<mytag:chart>${name }</mytag:chart>
 </body>
 </html>

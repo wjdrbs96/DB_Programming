@@ -27,3 +27,6 @@ MaxAge
 쿠키를 사용하면 request할 때 브라우저에 저장된 것을 같이 보내기 때문에 서버에 저장하고 있지 않아도 되기 때문에 저장 공간 절약
 ```
 
+### 2) myexample3 서블릿을 만들어서 (override)doPost 함수를 생성
+
+* [myExample3]()
