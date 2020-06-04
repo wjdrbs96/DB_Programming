@@ -36,10 +36,6 @@ public class MyExample2 extends HttpServlet {
 	    }
 	    out.println(gender);
 	    out.println(birth);
-	    out.println(introduction);
-
-
-	}
-
-	
+	    out.println(introduction);	
+	}	
 }
