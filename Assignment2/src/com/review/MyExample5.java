@@ -1,14 +1,18 @@
-package com.calcul;
+package com.review;
 
 import java.io.IOException;
-import javax.servlet.ServletContext;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-public class CalCookie extends HttpServlet{
+@WebServlet("/my5")
+public class MyExample5 extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -30,6 +34,7 @@ public class CalCookie extends HttpServlet{
 			for (Cookie c : cookies) {
 				if (c.getName().equals("value")) {
 					prev = Integer.parseInt(c.getValue());
+					System.out.println(prev);
 				}
 				
 				if (c.getName().equals("operator")) {
@@ -39,6 +44,7 @@ public class CalCookie extends HttpServlet{
 			
 			if (prev_op.equals("+")) {
 				result = prev + v;
+				
 			} else if (prev_op.equals("-")) {
 				result = prev - v;
 			}
@@ -47,18 +53,19 @@ public class CalCookie extends HttpServlet{
 			
 		} else {
 			// 서버에서 쿠키 생성
+			System.out.println(v);
+			System.out.println(op);
 			Cookie valueCookie = new Cookie("value", String.valueOf(v));
 			Cookie operatorCookie = new Cookie("operator", op);
 			valueCookie.setMaxAge(60 * 60 * 2);
-			valueCookie.setPath("/cal2");
+			valueCookie.setPath("/");
 			
 			// 클라이언트에게 쿠키 전송
 			resp.addCookie(valueCookie);
 			resp.addCookie(operatorCookie);
 			
-			resp.sendRedirect("Calculator2.html");
-			
+			resp.sendRedirect("cal2.html");
+		
 		}
 	}
-
 }
