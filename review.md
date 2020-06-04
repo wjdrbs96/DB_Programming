@@ -31,7 +31,7 @@ MaxAge
 
 * [ServletContext](https://github.com/wjdrbs96/JDBC_Project/blob/master/Assignment2/src/com/review/MyExample3.java)
 
-* [HttpSession]()
+* [HttpSession](https://github.com/wjdrbs96/JDBC_Project/blob/master/Assignment2/src/com/review/MyExample4.java)
 
-* [Cookie]()
+* [Cookie](https://github.com/wjdrbs96/JDBC_Project/blob/master/Assignment2/src/com/review/MyExample5.java)
 
