@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import DTO.Member;
 
@@ -30,25 +31,55 @@ public class MemberSevlet extends HttpServlet {
 		String name = req.getParameter("name");
 		String email = req.getParameter("email");
 		
+		// 입력하지 않은 것이 존재하면  redirect
+		if (loginId.length() == 0 || password.length() == 0 || name.length() == 0 || email.length() == 0) {
+			resp.sendRedirect("register.jsp");
+			return;
+		}
+		
 		Member member = new Member(loginId, password, name, email);
 		
 		String jdbc_driver = "com.mysql.cj.jdbc.Driver";
 		String jdbc_url = "jdbc:mysql://localhost:3306/address?serverTimezone=UTC";
 
 		Connection con = null;
+		HttpSession session = req.getSession();
 		
 		try {
 			Class.forName(jdbc_driver).newInstance();
 			con = DriverManager.getConnection(jdbc_url, "root", "root");
 			Statement st = con.createStatement();
-			insert(con, member);
+			boolean check = checkLoginId(con, loginId, name);
 			
-
+			// 아이디, 이름이 DB에 저장되어 있지 않을 때
+			if (!check) {
+				insert(con, member);
+			}
+			
+			// 아이디, 이름이 DB에 저장되어 있을 때
+			else {
+				boolean checkPW = checkPassword(con, loginId, password);
+				
+				// 비밀번호가 일치하지 않을 때
+				if (!checkPW) {
+					String errorMsg = "비밀번호가 틀렸습니다";
+					session.setAttribute("errorMsg", errorMsg);
+					resp.sendRedirect("register.jsp");
+					return;
+					
+				}
+				
+				int memberId = checkMemberId(con, member);
+				updateMember(con, member, memberId);
+				
+			}
+					
 		}
 		
 		catch (SQLException e) {
 			System.out.println("쿼리 에러");
 		}
+		
 		catch (Exception e) {
 			System.out.println("에러입니다");
 		}
@@ -64,6 +95,77 @@ public class MemberSevlet extends HttpServlet {
 			}
 
 		}
+	}
+	
+	public static int checkMemberId(Connection con, Member member) throws SQLException {
+		String sql = "select * from member where loginId = ?";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, member.getLoginId());
+		
+		ResultSet rs = ps.executeQuery();
+		if (rs.next()) {
+			return rs.getInt("memberId");
+		}
+		
+		return 0;
+		
+	}
+	
+	public static void updateMember(Connection con, Member member, int memberId) throws SQLException {
+		String sql = "update member set loginId = ?, password = ?, name = ?, email = ? where memberId = ?";
+		
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		pstmt.setString(1,member.getLoginId());
+		pstmt.setString(2, member.getPassword());
+		pstmt.setString(3, member.getName());
+		pstmt.setString(4, member.getEmail());
+		pstmt.setInt(5,  memberId);
+		
+		int count = pstmt.executeUpdate();
+		
+		if (count == 1) {
+			System.out.println("업데이트 성공입니다");
+		}
+		else {
+			System.out.println("업데이트 실패입니다");
+		}
+		
+		pstmt.close();
+	}
+	
+	public static boolean checkLoginId(Connection con, String loginId, String name) throws SQLException {
+		// 아이디, 이름이 모두 같을 때 중복체크임,,, 
+		String sql = "select * from member where loginId = ? and name = ?";
+		
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, loginId);
+		pstmt.setString(2, name);
+		
+		ResultSet rs = pstmt.executeQuery();
+		
+		if (rs.next()) {
+			return true;
+		}
+		
+		return false;
+	}
+	
+	public static boolean checkPassword(Connection con, String loginId, String password) throws SQLException {
+		String sql = "select * from member where loginId = ? and password = ?";
+		
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, loginId);
+		pstmt.setString(2, password);
+		
+		ResultSet rs = pstmt.executeQuery();
+		
+		if (rs.next()) {
+			return true;
+		}
+			
+		return false;
+		
 	}
 	
 	public static void insert(Connection con, Member member) throws SQLException {

@@ -55,8 +55,6 @@
             <input class="form-control margin-auto login-input-width"
                    type="text" id="name" name="name"
                    placeholder="이름을 입력하세요.">
-
-
         </div>
 
         <div class="form-group">
@@ -74,6 +72,13 @@
         </div>
 
     </form>
+    
+    <% if (session.getAttribute("errorMsg") != null) { %>
+  		<div class="alert alert-danger">
+    	로그인 실패: <%= session.getAttribute("errorMsg") %>
+  		</div>
+	<% } %>
+ 
 </div>
 </body>
 </html>
