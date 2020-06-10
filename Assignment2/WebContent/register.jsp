@@ -27,7 +27,7 @@
 
 <body>
 <div class="container text-center" style="margin-top: 3%;">
-    <h1 class="ssafy">회원가입</h1>
+    <h1>회원가입</h1>
     <hr>
 
     <form action="member" method="post">
@@ -68,7 +68,8 @@
         <hr>
         <div class="div-margin-bottom">
             <button class="btn btn-primary" type="submit">가입</button>
-            <a href="http://localhost:8080/login"><button class="btn btn-primary" type="button">처음으로</button></a>
+            <a href="http://localhost:8081/Assignment2/DBView"><button class="btn btn-primary" type="button">DB보기</button></a>
+            <a href="http://localhost:8081/Assignment2/deleteAll"><button class="btn btn-primary" type="button">DB삭제</button></a>
         </div>
 
     </form>
