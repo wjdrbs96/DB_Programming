@@ -5,6 +5,12 @@ public class Member {
 	String loginId;
 	String password;
 	
+	public Member(int memberId, String loginId, String password) {
+		this.memberId = memberId;
+		this.loginId = loginId;
+		this.password = password;
+	}
+
 	public Member(String loginId, String password) {
 		this.loginId = loginId;
 		this.password = password;

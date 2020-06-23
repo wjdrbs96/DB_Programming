@@ -21,9 +21,7 @@
     <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/res/css/application.css" rel="stylesheet">
 </head>
-<%
-	
-%>
+
 
 <body>
 <div class="container text-center" style="margin-top: 3%;">
@@ -47,13 +45,12 @@
             <input class="form-control margin-auto login-input-width"
                    type="password" id="pw" name="password"
                    placeholder="Password를 입력하세요.">
-
         </div>
         
         <hr>
         <div class="div-margin-bottom">
-            <button class="btn btn-primary" type="submit">로그인</button>
-            <a href="http://localhost:8081/Assignment2/deleteAll"><button class="btn btn-primary" type="button">가입</button></a>
+            <button class="btn btn-primary" value="1" name="number" type="submit">로그인</button>
+            <button class="btn btn-primary" value="2" name="number" type="submit">가입</button>
         </div>
 
     </form>
