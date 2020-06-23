@@ -25,21 +25,12 @@ input{
 </style>
 </head>
 <body>
-	<%
-		String num1 = request.getParameter("num1");
-		String num2 = request.getParameter("num2");
-		String operator = request.getParameter("operator");
-		int iNum1 = num1 != null ? Integer.parseInt(num1) : 0;
-		int iNum2 = num2 != null ? Integer.parseInt(num2) : 0;
-		int result = iNum1 + iNum2;
-	%>
 
 	<div>
-		<form action = "myJspExample.jsp" method="get">
+		<form action = "myExample4.jsp" method="get">
 			<table>
 			  <tr>
-			  	<td class="output" colspan="4"><%= iNum1 %> + <%= iNum2 %> = <%= result %></td>
-			  	<input type="hidden" name="num1" value=<%= result %>>
+			  	<td class="output" colspan="4">${param.num1 } + ${param.num2 } = ${param.num1 + param.num2 }</td>
 			  </tr>
 			  <tr>
 			  	<td><input type="submit" name="operator" value="CE"/></td>
@@ -48,21 +39,21 @@ input{
 			  	<td><input type="submit" name="operator" value="/"/></td>
 			  </tr>
 			  <tr>
-			  	<td><input type="submit" name="num2" value="7"/></td>
-			  	<td><input type="submit" name="num2" value="8"/></td>
-			  	<td><input type="submit" name="num2" value="9"/></td>
+			  	<td><input type="submit" name="value" value="7"/></td>
+			  	<td><input type="submit" name="value" value="8"/></td>
+			  	<td><input type="submit" name="value" value="9"/></td>
 			  	<td><input type="submit" name="operator" value="*"/></td>
 			  </tr>
 			  <tr>
-			  	<td><input type="submit" name="num2" value="4"/></td>
-			  	<td><input type="submit" name="num2" value="5"/></td>
-			  	<td><input type="submit" name="num2" value="6"/></td>
+			  	<td><input type="submit" name="value" value="4"/></td>
+			  	<td><input type="submit" name="value" value="5"/></td>
+			  	<td><input type="submit" name="value" value="6"/></td>
 			  	<td><input type="submit" name="operator" value="-"/></td>
 			  </tr>
 			  <tr>
-			  	<td><input type="submit" name="num2" value="1"/></td>
-			  	<td><input type="submit" name="num2" value="2"/></td>
-			  	<td><input type="submit" name="num2" value="3"/></td>
+			  	<td><input type="submit" name="value" value="1"/></td>
+			  	<td><input type="submit" name="value" value="2"/></td>
+			  	<td><input type="submit" name="value" value="3"/></td>
 			  	<td><input type="submit" name="operator" value="+"/></td>
 			  </tr>
 			  <tr>

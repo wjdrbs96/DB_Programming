@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2bc8a2b8-b93c-4d50-99ea-1d1defc02504" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/AssignmentJSP/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AssignmentJSP/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/AssignmentJSP/.classpath" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,7 +20,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Java" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -69,6 +67,7 @@
       <workItem from="1591792025258" duration="118000" />
       <workItem from="1592533095076" duration="1445000" />
       <workItem from="1592566152285" duration="36000" />
+      <workItem from="1592832019719" duration="642000" />
     </task>
     <servers />
   </component>

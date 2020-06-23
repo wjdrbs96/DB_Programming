@@ -29,16 +29,16 @@ input{
 		String num1 = request.getParameter("num1");
 		String num2 = request.getParameter("num2");
 		String operator = request.getParameter("operator");
-		int iNum1 = num1 != null ? Integer.parseInt(num1) : 0;
-		int iNum2 = num2 != null ? Integer.parseInt(num2) : 0;
-		int result = iNum1 + iNum2;
+		int iNum1 = num1 != null ? Integer.parseInt(num1) : 1;
+		int iNum2 = num2 != null ? Integer.parseInt(num2) : 1;
+		int result = iNum1 * iNum2;
 	%>
 
 	<div>
-		<form action = "myJspExample.jsp" method="get">
+		<form action = "myJspExample2.jsp" method="get">
 			<table>
 			  <tr>
-			  	<td class="output" colspan="4"><%= iNum1 %> + <%= iNum2 %> = <%= result %></td>
+			  	<td class="output" colspan="4"><%= iNum1 %> * <%= iNum2 %> = <%= result %></td>
 			  	<input type="hidden" name="num1" value=<%= result %>>
 			  </tr>
 			  <tr>
