@@ -25,7 +25,7 @@
 
 <body>
 <div class="container text-center" style="margin-top: 3%;">
-    <h1>회원가입</h1>
+    <h1>로그인</h1>
     <hr>
 
     <form action="login" method="post">
@@ -50,7 +50,7 @@
         <hr>
         <div class="div-margin-bottom">
             <button class="btn btn-primary" value="1" name="number" type="submit">로그인</button>
-            <button class="btn btn-primary" value="2" name="number" type="submit">가입</button>
+            <button class="btn btn-primary" value="2" name="number" type="submit">회원가입</button>
         </div>
 
     </form>

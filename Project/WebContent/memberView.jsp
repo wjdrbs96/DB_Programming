@@ -38,11 +38,7 @@
 	margin-bottom: 20px;
 }
 </style>
-<%
-	String loginId = request.getParameter("loginId");
-	if (loginId == null)
-		loginId = "";
-%>
+
 
 <body>
 	<div class="container">
@@ -51,15 +47,20 @@
 		<table id="margin" class="table table-hover table table-striped">
 			<tr>
 				<th>아이디</th>
+				<th>이름</th>
+				<th>학과</th>
 			</tr>
 			<tr>
-				<th>${loginId }</th>
+				<th>${member.getLoginId() }</th>
+				<th>${member.getName() }</th>
+				<th>${member.getDepartment()}</th>
+				
 			</tr>
 
 		</table>
 		
 		<a href="http://localhost:8081/Project/list" class="btn btn-info">목록</a>
-		<a href="http://localhost:8081/Project/list" class="btn btn-info">수정</a>
+		<a href="http://localhost:8081/Project/list?id=${member.getLoginId() }" class="btn btn-info">수정</a>
 
 	</div>
 

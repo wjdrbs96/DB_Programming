@@ -3,9 +3,10 @@ package DBP;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,7 +25,11 @@ public class UpdateServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/html;charset=UTF-8");
 
-
+		
+		String loginId = req.getParameter("id");
+		if (loginId == null) loginId = "";
+		
+				
 		String jdbc_driver = "com.mysql.cj.jdbc.Driver";
 		String jdbc_url = "jdbc:mysql://localhost:3306/address?serverTimezone=UTC";
 
@@ -35,8 +40,10 @@ public class UpdateServlet extends HttpServlet {
 			Class.forName(jdbc_driver).newInstance();
 			con = DriverManager.getConnection(jdbc_url, "root", "root");
 			Statement st = con.createStatement();
-			
-
+			Member member = findByLoginId(con, loginId);
+			session.setAttribute("member", member);
+			resp.sendRedirect("updateMember.jsp");
+			return;
 		}
 
 		catch (SQLException e) {
@@ -59,4 +66,20 @@ public class UpdateServlet extends HttpServlet {
 
 		}
 	}
+	
+	
+	public static Member findByLoginId(Connection con, String loginId) throws Exception {
+		String sql = "select * from member where loginId = ?";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, loginId);
+		
+		ResultSet rs = ps.executeQuery();
+		rs.next();
+		
+		Member member = new Member(rs.getInt("memberId"), rs.getString("loginId"), rs.getString("password"), rs.getString("name"),rs.getString("department"));
+		
+		return member;
+	}
+	
 }

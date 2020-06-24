@@ -19,14 +19,16 @@ import javax.servlet.http.HttpSession;
 
 import DTO.Member;
 
-@WebServlet("/list")
-public class ListServlet extends HttpServlet {
+@WebServlet("/search")
+public class SearchServlet extends HttpServlet {
 	
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/html;charset=UTF-8");
-
+		String select = req.getParameter("select");
+		String search = req.getParameter("search");
 
 		String jdbc_driver = "com.mysql.cj.jdbc.Driver";
 		String jdbc_url = "jdbc:mysql://localhost:3306/address?serverTimezone=UTC";
@@ -34,24 +36,26 @@ public class ListServlet extends HttpServlet {
 
 		Connection con = null;
 		HttpSession session = req.getSession();
-		String loginId = req.getParameter("id");
+
 		
 
 		try {
 			Class.forName(jdbc_driver).newInstance();
 			con = DriverManager.getConnection(jdbc_url, "root", "root");
 			Statement st = con.createStatement();
-			if (loginId != null) {
-				Member member = findMember(con, loginId);
-				session.setAttribute("member", member);
-				resp.sendRedirect("updateMember.jsp");
+			
+			if (select.equals("default")) {
+				List<Member> list = memberAllList(st);
+				session.setAttribute("list", list);
+				resp.sendRedirect("listAll.jsp");
 				return;
 			}
 			
-			List<Member> list = memberAllList(st);
+			List<Member> list = findByDepartment(con, search);
 			session.setAttribute("list", list);
 			resp.sendRedirect("listAll.jsp");
 			return;
+			
 
 		}
 
@@ -76,6 +80,21 @@ public class ListServlet extends HttpServlet {
 		}
 	}
 	
+	public static List<Member> findByDepartment(Connection con, String department) throws Exception {
+		String sql = "select * from member where department = ?";
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, department);
+
+		List<Member> list = new ArrayList<>();
+		ResultSet rs = pstmt.executeQuery();
+		while (rs.next()) {
+			Member member = new Member(rs.getInt("memberId"), rs.getString("loginId"), rs.getString("password"), rs.getString("name"), rs.getString("department"));
+			list.add(member);
+		}
+		
+		return list;
+	}
+	
 	public static List<Member> memberAllList(Statement st) throws SQLException {
 		String sql = "select * from member";
 		List<Member> list = new ArrayList<>();
@@ -88,18 +107,5 @@ public class ListServlet extends HttpServlet {
 		}
 
 		return list;
-	}
-	
-	public static Member findMember(Connection con, String loginId) throws Exception {
-		String sql = "select * from member where loginId = ?";
-		
-		PreparedStatement pstmt = con.prepareStatement(sql);
-		pstmt.setString(1, loginId);
-
-		ResultSet rs = pstmt.executeQuery();
-		rs.next();
-		Member member = new Member(rs.getInt("memberId"), rs.getString("loginId"), rs.getString("password"), rs.getString("name"), rs.getString("department"));
-		
-		return member;
 	}
 }

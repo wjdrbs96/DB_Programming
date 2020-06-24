@@ -42,7 +42,7 @@
 
 	<div class="container">
 
-		<form method="post" class="form-inline">
+		<form action="search" method="post" class="form-inline">
 			<div id="margin" class="form-group">
 				<select name="select" class="form-control">
 					<option value="default"}>default</option>
@@ -56,13 +56,15 @@
 		<table class="table table-hover table table-striped">
 			<tr>
 				<th>아이디</th>
-				<th>비밀번호</th>
+				<th>이름</th>
+				<th>학과</th>
 			</tr>
 
 			<c:forEach items="${list}" var="list">
 				<tr>
 				    <th><a href="http://localhost:8081/Project/login?id=${list.getMemberId()}">${list.getLoginId()}</a></th>
-					<th>${list.getPassword()}</th>
+					<th>${list.getName()}</th>
+					<th>${list.getDepartment()}</th>
 				</tr>
 			</c:forEach>
 		</table>

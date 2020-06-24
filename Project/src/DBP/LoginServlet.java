@@ -26,10 +26,15 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html;charset=UTF-8");
 		req.setCharacterEncoding("UTF-8");
-
+		
 		String loginId = req.getParameter("loginId");
 		String password = req.getParameter("password");
 		String number = req.getParameter("number");
+		
+		if (number.equals("2")) {
+			resp.sendRedirect("register.jsp");
+			return;
+		}
 
 		// 입력하지 않은 것이 존재하면 redirect
 		if (loginId.length() == 0 || loginId == null || password.length() == 0 || password == null) {
@@ -60,17 +65,10 @@ public class LoginServlet extends HttpServlet {
 					return;
 				}
 				
-				insert(con, member);
 			}
 
 			// 아이디, 이름이 DB에 저장되어 있을 때
 			else {
-				if (number.equals("2")) {
-					String errorMsg = "이미 존재하는 아이디입니다";
-					session.setAttribute("errorMsg", errorMsg);
-					resp.sendRedirect("login.jsp");
-					return;
-				}
 				
 				boolean checkPW = checkPassword(con, loginId, password);
 
@@ -112,28 +110,6 @@ public class LoginServlet extends HttpServlet {
 		}
 	}
 
-	public static void insert(Connection con, Member member) throws SQLException {
-
-		String sql = "insert into member(loginId, password) " + "values(?, ?)";
-
-		PreparedStatement pstmt = con.prepareStatement(sql);
-
-		pstmt.setString(1, member.getLoginId());
-		pstmt.setString(2, member.getPassword());
-
-		int count = pstmt.executeUpdate();
-
-		if (count == 1) {
-			System.out.println("==========insert 성공입니다==========");
-
-		}
-
-		else {
-			System.out.println("insert 실패입니다");
-		}
-
-		pstmt.close();
-	}
 	
 	public static List<Member> memberAllList(Statement st) throws SQLException {
 		String sql = "select * from member";
@@ -142,7 +118,7 @@ public class LoginServlet extends HttpServlet {
 		ResultSet rs = st.executeQuery(sql);
 
 		while (rs.next()) {
-			Member member = new Member(rs.getInt("memberId"), rs.getString("loginId"), rs.getString("password"));
+			Member member = new Member(rs.getInt("memberId"), rs.getString("loginId"), rs.getString("password"), rs.getString("name"), rs.getString("department"));
 			list.add(member);
 		}
 
@@ -222,6 +198,13 @@ public class LoginServlet extends HttpServlet {
 		
 		resp.setContentType("text/html;charset=UTF-8");
 		req.setCharacterEncoding("UTF-8");
+		
+		String number = req.getParameter("number");
+		if (number == null) number = "";
+		if (number.equals("3")) {
+			resp.sendRedirect("login.jsp");
+			return;
+		}
 
 		String id = req.getParameter("id");
 		int Id = Integer.parseInt(id);
@@ -236,10 +219,9 @@ public class LoginServlet extends HttpServlet {
 			Class.forName(jdbc_driver).newInstance();
 			con = DriverManager.getConnection(jdbc_url, "root", "root");
 			Statement st = con.createStatement();
-			String loginId = findMember(con, Id);
+			Member member = findMember(con, Id);
 			
-			session.setAttribute("loginId", loginId);
-			req.setAttribute("loginId", loginId);
+			session.setAttribute("member", member);
 			resp.sendRedirect("memberView.jsp");
 			return;
 
@@ -267,20 +249,17 @@ public class LoginServlet extends HttpServlet {
 	}
 		
 		
-	public static String findMember(Connection con, int memberId) throws Exception {
+	public static Member findMember(Connection con, int memberId) throws Exception {
 		String sql = "select * from member where memberId = ?";
 		
 		PreparedStatement pstmt = con.prepareStatement(sql);
 		pstmt.setInt(1, memberId);
 
 		ResultSet rs = pstmt.executeQuery();
-
-		if (rs.next()) {
-			return rs.getString(2);
-		}
+		rs.next();
+		Member member = new Member(rs.getInt("memberId"), rs.getString("loginId"), rs.getString("password"), rs.getString("name"), rs.getString("department"));
 		
-		
-		return null;
+		return member;
 	}
 
 }
